@@ -1,0 +1,45 @@
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Slab" rel="stylesheet">
+  <link rel="icon" type="image/png" size="16x16 32x32" href="icon.png?v=2" />
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script>
+    $(document).ready(function(){$(".welcome").hide().fadeIn(1200);
+                                 $(".pleaseSignIn").hide().delay(1200).fadeIn(1200);
+                                 });
+  </script>
+</head>
+
+<body>
+  <div class="header">
+    <div class="login">{{> loginButtons align="right"}}</div>
+    {{#if currentUser}}
+      <div class="pageTitle" title="The Best Chat Site on the Web">We::Messager</div>
+    {{/if}}
+  </div>
+  {{#if currentUser}}
+    <div class="chatListColumn">
+      {{> chatListColumn}}
+    </div>
+    <div class="mainColumn">
+      {{#if chatOpen}}
+        <div class="chatLog">
+          {{> chatLog}}
+        </div>
+        <div class="inputArea">
+          {{> inputArea}}
+        </div>
+      {{else}}
+        <div class="loginGreeting">
+          <p class="hiUsername">Привет, {{currentUser.username}}.</p>
+          <p class="belowHiText">Вы можете начать беседу нажав кнопку слева.</p>
+        </div>
+      {{/if}}
+    </div>
+  {{else}}
+    <div class="welcomeText" title="Sign in on the top right.">
+      <span class="welcome">We::Messager<br></span>
+      <span class="pleaseSignIn">by We::Dev</span>
+    </div>
+  {{/if}}
+</body>

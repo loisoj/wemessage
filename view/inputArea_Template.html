@@ -1,0 +1,10 @@
+<template name="inputArea">
+  {{#if notAtBottom}}
+    <button class="scrollToBottomButton">{{scrollToBottomButtonText}}</button>
+  {{/if}}
+  <form class="newMessage">
+    <textarea class="textarea" name="textarea" placeholder="Say something."></textarea>
+    <button class="sendButton">Отправить</button>
+    <input type="checkbox" class="submitOnEnter" title="Don't send when pressing Enter"/>
+  </form>
+</template>

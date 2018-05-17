@@ -1,14 +1,5 @@
-/* 
+/*
 
-Chat Bop v1.0 
-Author: Quang Luong
-
-This chat site is made using Meteor.js.
-Messages are stored in a big ol' collection, and are
-distributed to the right senders and receivers.
-Chat Bop supports a streamlined friend system, and detects when
-new messages are sent over. It also knows when users are online or offline,
-thanks to mizzao's user-status package.
 
 Messages are stored in a Messages collection as follows:
 {
@@ -269,7 +260,7 @@ if (Meteor.isClient) {
       Session.set('currentChat', this.friendname);
       bottomHeight = 0;
       Meteor.subscribe('Messages', this.friendname, messageLimit);
-      focusOn('textarea');      
+      focusOn('textarea');
     },
 
     // Accept a request from the add button.
@@ -369,7 +360,7 @@ if (Meteor.isClient) {
         event.preventDefault();
         if (/\S/.test(event.target.value)) {
           Meteor.call('newMessage', Session.get('currentChat'), Meteor.user().username, event.target.value);
-          scrollToBottom();          
+          scrollToBottom();
           event.target.value = "";
         }
         document.getElementsByClassName("sendButton")[0].style.fontSize = "20px";
@@ -411,7 +402,7 @@ if (Meteor.isClient) {
       }
     }
   });
-  
+
   // Focuses on the textarea when it first renders.
   Template.inputArea.onRendered(function () {
     $('textarea').focus(function () {
@@ -449,12 +440,12 @@ if (Meteor.isClient) {
     if (Meteor.user()) {
       var count = Friends.find({$or: [{username: Meteor.user().username, newMessageCount: {$gt: 0}}, {requestStatus: 'received'}]}).count();
       if (count > 0) {
-        document.title = "[" + count + "] Chat Bop";
+        document.title = "[" + count + "] We::Messanger";
       } else {
-        document.title = "Chat Bop"
+        document.title = "We::Messanger"
       }
     } else {
-      document.title = "Chat Bop | Sign-in";
+      document.title = "We::Messanger | We::Dev";
     }
   });
 
@@ -463,7 +454,7 @@ if (Meteor.isClient) {
     if (!Meteor.user()) {
       Session.set('addNewChat', false);
       Session.set('removeChat', false);
-      Session.set('currentChat', '');   
+      Session.set('currentChat', '');
     }
   });
 }

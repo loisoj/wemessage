@@ -1,0 +1,46 @@
+<template name="chatListColumn">
+  <div class="chatListTitle">
+    <button id="chatListButton" class="addNewChat" title="Add New Chat">+</button>
+      Список чатов
+    <button id="chatListButton" class="removeChat" title="Remove Chat">−</button>
+    {{#if addNewChatToggled}}
+      <div class="addNewChatBox">
+        <h1> Начать новый чат </h1>
+        Введите имя пользователя с которым хотите начать чат, как только он примет приглашение- чат начнеться!
+        <form class="newChatInput">
+          {{> usernameInput}}
+        </form>
+      </div>
+    {{/if}}
+    {{#if removeChatToggled}}
+      <div class="removeChatBox">
+        <h1> Удалить чат </h1>
+        Удалит из контактов человека и полностью сотрет всю историю переписки!
+        <form class="removeChatInput">
+          {{> usernameInput}}
+        </form>
+      </div>
+    {{/if}}
+  </div>
+  <div class="namesList" style={{nameListHeight}}>
+    <ul>
+      {{#each myRequests}}
+        {{#if received}}
+          <li class="myRequestText">
+            <button class="addRequestButton" title="Accept Request">+</button>
+            Запрос от: {{friendname}}
+          </li>
+        {{else}}
+          <li class="sentRequestText">Отправить запрос: {{friendname}}</li>
+        {{/if}}
+      {{/each}}
+      {{#each myChats}}
+        {{#if isOnline}}
+          <li class="myChatText" id="isOnline" style={{currentChatListStyle}} title="online">{{newMessageCountText}}{{friendname}}</li>
+        {{else}}
+          <li class="myChatText" style={{currentChatListStyle}} title="offline">{{newMessageCountText}}{{friendname}}</li>
+        {{/if}}
+      {{/each}}
+    </ul>
+  </div>
+</template>

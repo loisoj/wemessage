@@ -1,0 +1,12 @@
+<template name="chatLog">
+  <ul>
+    {{#if moreMessages}}
+      <button class="moreMessages">—Загрузить все сообщения—</button>
+    {{else}}
+      <div class="noMoreMessages">—Нет сообщений—</div>
+    {{/if}}
+    {{#each myMessages}}
+      {{> chatMessage}}
+    {{/each}}
+  </ul>
+</template>
