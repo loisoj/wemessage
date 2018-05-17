@@ -36,17 +36,17 @@ if (Meteor.isClient) {
       }
     },
     "click #kill" : function () {
-      Messages.remove({})
+      Messages._collection.remove({});
     }
   });
 
 
   Meteor.startup(function () {
-    var user_name = String(prompt("What is your name?", "Bob"))
+    var user_name = String(prompt("Ваше имя?", ""))
     Session.setDefault("name", user_name)
     Session.set("id", numUsers)
     Online.insert({
-      name: user_name, 
+      name: user_name,
       joined: Date.parse(Date()),
       id: numUsers,
       last_seen: (new Date()).getTime()
@@ -62,7 +62,7 @@ if (Meteor.isClient) {
 if (Meteor.isServer) {
   Meteor.startup(function () {
     // code to run on server at startup
-    // Online.remove({})
+    Online.remove({})
 
   });
   // server code: heartbeat method
